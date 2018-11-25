@@ -1,8 +1,7 @@
 <?php
+	class Publicacion{
 
-	class Equipo{
-
-		public $table = 'equipo';
+		public $table = 'publicacion';
 
 		public function open($key){
 			$stringConnection = new Connection;
@@ -18,12 +17,13 @@
 
 		public function listAll($key,$perfil){
 			$request = $this->open($key);
-			$sql = 'SELECT equipo.clave as equipo_clave,
-					equipo.nombre as equipo_nombre,
-					equipo.descripcion as equipo_descripcion,
-					equipo.color as equipo_color,
-					equipo.organizacion_clave as organizacion_clave,
-					equipo.estado as equipo_estado,
+			$sql = 'SELECT publicacion.cve as publicacion_clave,
+					publicacion.fecha as publicacion_fecha,
+					publicacion.titulo as publicacion_titulo,
+					publicacion.descripcion as publicacion_descripcion,
+					publicacion.adjunto as publicacion_adjunto,
+					publicacion.organizacion_clave as organizacion_clave,
+					publicacion.estado as publicacion_estado,
 					organizacion.nombre as organizacion_nombre,
 					organizacion.eslogan as organizacion_eslogan,
 					organizacion.correo as organizacion_correo,
@@ -38,11 +38,11 @@
 					perfil_administrador.id_cuenta as perfil_id_cuenta,
 					perfil_administrador.inicio_cuenta as perfil_inicio_cuenta,
 					perfil_administrador.vencimiento_cuenta as perfil_vencimiento_cuenta,
-					perfil_administrador.estado_cuenta as perfil_estado
-					from equipo
-					inner join organizacion on (equipo.organizacion_clave = organizacion.clave)
+					perfil_administrador.estado_cuenta as perfil_estado_cuenta
+					from publicacion
+					inner join organizacion on (publicacion.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where organizacion.perfil_administrador_clave = "'.$perfil.'"';
+					where publicacion.perfil_administrador_clave = "'.$perfil.'"';
 			$res = $request->consultaDatos($key,$sql);
 			#echo $sql;
 			return ($res);
@@ -50,12 +50,13 @@
 
 		public function listActive($key,$perfil){
 			$request = $this->open($key);
-			$sql = 'SELECT equipo.clave as equipo_clave,
-					equipo.nombre as equipo_nombre,
-					equipo.descripcion as equipo_descripcion,
-					equipo.color as equipo_color,
-					equipo.organizacion_clave as organizacion_clave,
-					equipo.estado as equipo_estado,
+			$sql = 'SELECT publicacion.cve as publicacion_clave,
+					publicacion.fecha as publicacion_fecha,
+					publicacion.titulo as publicacion_titulo,
+					publicacion.descripcion as publicacion_descripcion,
+					publicacion.adjunto as publicacion_adjunto,
+					publicacion.organizacion_clave as organizacion_clave,
+					publicacion.estado as publicacion_estado,
 					organizacion.nombre as organizacion_nombre,
 					organizacion.eslogan as organizacion_eslogan,
 					organizacion.correo as organizacion_correo,
@@ -70,23 +71,25 @@
 					perfil_administrador.id_cuenta as perfil_id_cuenta,
 					perfil_administrador.inicio_cuenta as perfil_inicio_cuenta,
 					perfil_administrador.vencimiento_cuenta as perfil_vencimiento_cuenta,
-					perfil_administrador.estado_cuenta as perfil_estado
-					from equipo
-					inner join organizacion on (equipo.organizacion_clave = organizacion.clave)
+					perfil_administrador.estado_cuenta as perfil_estado_cuenta
+					from publicacion
+					inner join organizacion on (publicacion.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where equipo.estado = "active" and organizacion.perfil_administrador_clave = "'.$perfil.'"';
+					where publicacion.perfil_administrador_clave = "'.$perfil.'" where publicacion.estado = "active"';
 			$res = $request->consultaDatos($key,$sql);
+			#echo $sql;
 			return ($res);
 		}
 
 		public function listInactive($key,$perfil){
 			$request = $this->open($key);
-			$sql = 'SELECT equipo.clave as equipo_clave,
-					equipo.nombre as equipo_nombre,
-					equipo.descripcion as equipo_descripcion,
-					equipo.color as equipo_color,
-					equipo.organizacion_clave as organizacion_clave,
-					equipo.estado as equipo_estado,
+			$sql = 'SELECT publicacion.cve as publicacion_clave,
+					publicacion.fecha as publicacion_fecha,
+					publicacion.titulo as publicacion_titulo,
+					publicacion.descripcion as publicacion_descripcion,
+					publicacion.adjunto as publicacion_adjunto,
+					publicacion.organizacion_clave as organizacion_clave,
+					publicacion.estado as publicacion_estado,
 					organizacion.nombre as organizacion_nombre,
 					organizacion.eslogan as organizacion_eslogan,
 					organizacion.correo as organizacion_correo,
@@ -101,23 +104,25 @@
 					perfil_administrador.id_cuenta as perfil_id_cuenta,
 					perfil_administrador.inicio_cuenta as perfil_inicio_cuenta,
 					perfil_administrador.vencimiento_cuenta as perfil_vencimiento_cuenta,
-					perfil_administrador.estado_cuenta as perfil_estado
-					from equipo
-					inner join organizacion on (equipo.organizacion_clave = organizacion.clave)
+					perfil_administrador.estado_cuenta as perfil_estado_cuenta
+					from publicacion
+					inner join organizacion on (publicacion.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where equipo.estado = "inactive" and organizacion.perfil_administrador_clave = "'.$perfil.'"';
+					where publicacion.perfil_administrador_clave = "'.$perfil.'" where publicacion.estado = "inactive"';
 			$res = $request->consultaDatos($key,$sql);
+			#echo $sql;
 			return ($res);
 		}
 
 		public function viewData($key,$perfil,$clave){
 			$request = $this->open($key);
-			$sql = 'SELECT equipo.clave as equipo_clave,
-					equipo.nombre as equipo_nombre,
-					equipo.descripcion as equipo_descripcion,
-					equipo.color as equipo_color,
-					equipo.organizacion_clave as organizacion_clave,
-					equipo.estado as equipo_estado,
+			$sql = 'SELECT publicacion.cve as publicacion_clave,
+					publicacion.fecha as publicacion_fecha,
+					publicacion.titulo as publicacion_titulo,
+					publicacion.descripcion as publicacion_descripcion,
+					publicacion.adjunto as publicacion_adjunto,
+					publicacion.organizacion_clave as organizacion_clave,
+					publicacion.estado as publicacion_estado,
 					organizacion.nombre as organizacion_nombre,
 					organizacion.eslogan as organizacion_eslogan,
 					organizacion.correo as organizacion_correo,
@@ -132,11 +137,11 @@
 					perfil_administrador.id_cuenta as perfil_id_cuenta,
 					perfil_administrador.inicio_cuenta as perfil_inicio_cuenta,
 					perfil_administrador.vencimiento_cuenta as perfil_vencimiento_cuenta,
-					perfil_administrador.estado_cuenta as perfil_estado
-					from equipo
-					inner join organizacion on (equipo.organizacion_clave = organizacion.clave)
+					perfil_administrador.estado_cuenta as perfil_estado_cuenta
+					from publicacion
+					inner join organizacion on (publicacion.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where organizacion.perfil_administrador_clave = "'.$perfil.'" and equipo.clave = "'.$clave.'"';
+					where publicacion.perfil_administrador_clave = "'.$perfil.'" and publicacion.estado = "active" and publicacion.cve = "'.$clave.'"';
 			$res = $request->consultaDatos($key,$sql);
 			#echo $sql;
 			return ($res);
@@ -144,14 +149,16 @@
 
 		public function insert($key,$atr){
 			$request = $this->open($key);
-			$sql = 'INSERT INTO equipo(
-						nombre,
+			$sql = 'INSERT INTO publicacion(
+						fecha,
+						titulo,
 						descripcion,
-						color,
+						adjunto,
 						organizacion_clave)
-			 		VALUES ( upper("'.$atr['nombre'].'"),
+			 		VALUES ( upper("'.$atr['fecha'].'"),
+			 			 upper("'.$atr['titulo'].'"),
 			 			 upper("'.$atr['descripcion'].'"),
-			 			 upper("'.$atr['color'].'"),
+			 			 upper("'.$atr['adjunto'].'"),
 			 			 upper("'.$atr['organizacion_clave'].'")
 			 			)';
 			$res = $request->disparadorSimple($key,$sql);
@@ -160,31 +167,30 @@
 
 		public function modify($key,$atr){
 			$request = $this->open($key);
-			$sql = 'UPDATE equipo 
-					SET nombre = upper("'.$atr['nombre'].'"),
+			$sql = 'UPDATE publicacion 
+					SET fecha = upper("'.$atr['fecha'].'"),
+						titulo = upper("'.$atr['titulo'].'"),
 						descripcion = upper("'.$atr['descripcion'].'"),
-						color = upper("'.$atr['color'].'"),
-						organizacion_clave = upper("'.$atr['organizacion_clave'].'")
+						adjunto = upper("'.$atr['adjunto'].'"),
+						organizacion_clave = upper("'.$atr['organizacion_clave'].'"),
 						where clave = "'.$atr['clave'].'"';
 			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}
 
-
 		public function remove($key,$perfil,$clave){
 			$request = $this->open($key);
-			$sql = 'UPDATE equipo SET estado = "inactive" where organizacion_clave = "'.$perfil.'" and clave = "'.$clave.'"';
+			$sql = 'UPDATE publicacion SET estado = "inactive" where organizacion_clave = "'.$perfil.'" and clave = "'.$clave.'"';
 			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}
 
 		public function restore($key,$perfil,$clave){
 			$request = $this->open($key);
-			$sql = 'UPDATE equipo SET estado = "active" where organizacion_clave = "'.$perfil.'" and clave = "'.$clave.'"';
+			$sql = 'UPDATE publicacion SET estado = "active" where organizacion_clave = "'.$perfil.'" and clave = "'.$clave.'"';
 			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}
 
 	}
-
 ?>

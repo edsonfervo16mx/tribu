@@ -55,8 +55,18 @@
 			$data = json_encode($line);
 			$data = json_decode($data);
 			foreach ($data as $tableColumn) {
+				echo $tableColumn->Field.',<br>';
+			}
+			/**/
+			echo '--------------------<br>';
+			foreach ($data as $tableColumn) {
 				echo $table.'.'.$tableColumn->Field.',<br>';
 			}
+			echo '--------------------<br>';
+			foreach ($data as $tableColumn) {
+				echo $table.'.'.$tableColumn->Field.' as '.$table.'_'.$tableColumn->Field.',<br>';
+			}
+			/**/
 			#return ($data);
 			$conn->close();
 		}

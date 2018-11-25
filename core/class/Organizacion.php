@@ -112,7 +112,6 @@
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
 					where organizacion.estado = "active" and organizacion.perfil_administrador_clave = "'.$perfil.'" and organizacion.clave = "'.$clave.'"';
 			$res = $request->consultaDatos($key,$sql);
-			#echo $sql;
 			return ($res);
 		}
 
@@ -126,13 +125,13 @@
 						logo,
 						descripcion,
 						perfil_administrador_clave)
-			 		VALUES ("'.$atr['nombre'].'",
-			 			"'.$atr['eslogan'].'",
-			 			"'.$atr['correo'].'",
-			 			"'.$atr['telefono'].'",
-			 			"'.$atr['logo'].'",
-			 			"'.$atr['descripcion'].'",
-			 			"'.$atr['perfil_administrador_clave'].'"
+			 		VALUES ( upper("'.$atr['nombre'].'"),
+			 			 upper("'.$atr['eslogan'].'"),
+			 			 upper("'.$atr['correo'].'"),
+			 			 upper("'.$atr['telefono'].'"),
+			 			 upper("'.$atr['logo'].'"),
+			 			 upper("'.$atr['descripcion'].'"),
+			 			 upper("'.$atr['perfil_administrador_clave'].'")
 			 			)';
 			$res = $request->disparadorSimple($key,$sql);
 			#echo $sql;
@@ -157,14 +156,14 @@
 		public function remove($key,$perfil,$clave){
 			$request = $this->open($key);
 			$sql = 'UPDATE organizacion SET estado = "inactive" where perfil_administrador_clave = "'.$perfil.'" and clave = "'.$clave.'"';
-			$res = $stringConnection->disparadorSimple($key,$sql);
+			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}
 
 		public function restore($key,$perfil,$clave){
 			$request = $this->open($key);
 			$sql = 'UPDATE organizacion SET estado = "active" where perfil_administrador_clave = "'.$perfil.'" and clave = "'.$clave.'"';
-			$res = $stringConnection->disparadorSimple($key,$sql);
+			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}
 

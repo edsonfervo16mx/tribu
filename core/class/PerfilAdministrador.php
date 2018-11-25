@@ -122,7 +122,7 @@
 		public function disableService($key,$clave){
 			$request = $this->open($key);
 			$sql = 'UPDATE perfil_administrador SET estado_cuenta = "inactive" where clave = "'.$clave.'"';
-			$res = $stringConnection->disparadorSimple($key,$sql);
+			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}
 
@@ -132,7 +132,7 @@
 					SET estado_cuenta = "active",
 						vencimiento_cuenta = "'.$fecha_renovacion.'" 
 					where clave = "'.$clave.'"';
-			$res = $stringConnection->disparadorSimple($key,$sql);
+			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}
 

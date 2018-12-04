@@ -136,7 +136,7 @@
 					from equipo
 					inner join organizacion on (equipo.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where organizacion.perfil_administrador_clave = "'.$perfil.'" and equipo.clave = "'.$clave.'"';
+					where organizacion.perfil_administrador_clave = "'.$perfil.'" and equipo.clave = "'.$clave.'" LIMIT 1';
 			$res = $request->consultaDatos($key,$sql);
 			#echo $sql;
 			return ($res);

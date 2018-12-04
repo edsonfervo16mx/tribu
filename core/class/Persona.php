@@ -146,7 +146,7 @@
 					from persona
 					inner join organizacion on (persona.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where persona.clave = "'.$clave.'" and persona.estado ="inactive"';
+					where persona.clave = "'.$clave.'" and persona.estado ="inactive" LIMIT 1';
 			$res = $request->consultaDatos($key,$sql);
 			return ($res);
 		}

@@ -49,7 +49,7 @@
 			$sql = 'SELECT notificacion.cve as notificacion_clave,
 					notificacion.estado as notificacion_estado
 					from notificacion
-					where notificion.estado = "inactive" and notificacion.clave = "'.$clave.'"';
+					where notificion.estado = "inactive" and notificacion.clave = "'.$clave.'" LIMIT 1';
 			$res = $request->consultaDatos($key,$sql);
 			return ($res);
 		}

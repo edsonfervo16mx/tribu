@@ -110,7 +110,7 @@
 						perfil_administrador.estado_cuenta as perfil_estado_cuenta
 					from organizacion
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where organizacion.estado = "active" and organizacion.perfil_administrador_clave = "'.$perfil.'" and organizacion.clave = "'.$clave.'"';
+					where organizacion.estado = "active" and organizacion.perfil_administrador_clave = "'.$perfil.'" and organizacion.clave = "'.$clave.'" LIMIT 1';
 			$res = $request->consultaDatos($key,$sql);
 			return ($res);
 		}

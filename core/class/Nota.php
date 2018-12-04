@@ -146,7 +146,7 @@
 					from nota
 					inner join organizacion on (nota.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where nota.cve = "'.$clave.'"';
+					where nota.cve = "'.$clave.'" LIMIT 1';
 			$res = $request->consultaDatos($key,$sql);
 			return ($res);
 		}
@@ -195,7 +195,7 @@
 			return ($res);
 		}
 
-		public function restore($key,$perfil,$clave){
+		public function restore($key,$clave){
 			$request = $this->open($key);
 			$sql = 'UPDATE nota SET estado = "active" where clave = "'.$clave.'"';
 			$res = $request->disparadorSimple($key,$sql);

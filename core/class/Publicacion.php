@@ -141,7 +141,7 @@
 					from publicacion
 					inner join organizacion on (publicacion.organizacion_clave = organizacion.clave)
 					inner join perfil_administrador on (organizacion.perfil_administrador_clave = perfil_administrador.clave)
-					where publicacion.perfil_administrador_clave = "'.$perfil.'" and publicacion.estado = "active" and publicacion.cve = "'.$clave.'"';
+					where publicacion.perfil_administrador_clave = "'.$perfil.'" and publicacion.estado = "active" and publicacion.cve = "'.$clave.'" LIMIT 1';
 			$res = $request->consultaDatos($key,$sql);
 			#echo $sql;
 			return ($res);

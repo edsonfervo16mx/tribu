@@ -67,36 +67,51 @@
 			</div>
 		</div>
 	</nav>
-	<section class="hero is-light is-light is-medium">
+	<section class="hero is-light">
 		<div class="hero-body">
-			<div class="columns">
-				<div class="column is-three-fifths">
-					<div class="has-text-centered">
-						<h1 class="title">
-							Title
-						</h1>
-						<h2 class="subtitle">
-							Subtitle
-						</h2>
+			<div class="container">
+				<div class="columns">
+					<div class="column is-two-thirds">
+						<div class="has-text-centered">
+							<h1 class="title">
+								Title
+							</h1>
+							<h2 class="subtitle">
+								Subtitle
+							</h2>
+						</div>
 					</div>
-				</div>
-				<div class="column">
-					<div class="card">
-						<div class="card-content">
-							<form action="">
-								<div class="field">
-									<label class="label">Nombre de Usuario</label>
-									<div class="control">
-										<input class="input" type="text" placeholder="Ingrese su nombre de usuario">
+					<div class="column">
+						<div class="card">
+							<div class="card-content">
+								<form action="">
+									<div class="field">
+										<label class="label">Nombre de Usuario</label>
+										<div class="control">
+											<input class="input" type="text" placeholder="Ingrese su nombre de usuario">
+										</div>
 									</div>
-								</div>
-								<div class="field">
-									<label class="label">Correo electronico</label>
-									<div class="control">
-										<input class="input" type="text" placeholder="Ingrese su nombre de usuario">
+									<div class="field">
+										<label class="label">Correo electrónico</label>
+										<div class="control">
+											<input class="input" type="text" placeholder="Ingrese su correo electrónico">
+										</div>
 									</div>
-								</div>
-							</form>
+									<div class="field">
+										<label class="label">Contraseña</label>
+										<div class="control">
+											<input class="input" type="password" placeholder="Ingrese su contraseña">
+										</div>
+									</div>
+									<p class="is-size-7 margin-min">
+										Asegúrese de que tenga más de 15 caracteres, o al menos 8 caracteres, incluido un número y una letra minúscula. Son buenas prácticas de contraseña.
+									</p>
+									<a class="button is-success is-medium is-fullwidth">Registrarme</a>
+									<p class="is-size-7 margin-min">
+										Al hacer clic en "Registrarse en Tribu", usted acepta nuestros términos de servicio y declaración de privacidad.
+									</p>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -110,12 +125,13 @@
 				<div class="column">
 					<article class="message">
 					  <div class="message-body">
-					    Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+					    <strong>Módulo de administrador</strong>, administra de manera fácil y rapida el personal de tu organización. Planifica reuniones y eventos, crea asignaciones y/o comisiones, publica información general, avisos, circulares y notas. Gestiona el personal por departamentos o equipos. Genera la calendarización de la empresa con un solo clic.
 					  </div>
 					</article>
 					<article class="message">
 					  <div class="message-body">
-					    Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+					    <strong>Módulo de empleado</strong>, consulta información general de la empresa tales como: reuniones, eventos, asignaciones, comisiones y notas. Además podras descargar calendarios personalizados para tu departamento o equipo de trabajo. Además de recibir notificaciones vía correo electronico. 
+					    Estar al día nunca fue tan sencillo, optimiza tu tiempo y disfruta de grandes beneficios.
 					  </div>
 					</article>
 				</div>
@@ -135,10 +151,11 @@
 					<article class="message is-large">
 						<div class="message-header">
 							<p>Prueba gratis</p>
-							<button class="delete is-large" aria-label="delete"></button>
 						</div>
 						<div class="message-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla.Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
+							Registrate y obten 3 meses gratis, del uso completo de la plataforma.
+							<h1 class="price is-size-1 has-text-centered has-text-success"> Gratis <small class="is-size-4 has-text-grey"> / 3 meses</small></h1>
+							<a class="button is-success is-rounded is-large is-fullwidth margin-medium">Registrar</a>
 						</div>
 					</article>
 				</div>
@@ -146,12 +163,47 @@
 					<article class="message is-large">
 						<div class="message-header">
 							<p>Plan anual</p>
-							<button class="delete is-large" aria-label="delete"></button>
 						</div>
 						<div class="message-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla.Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
+							Disfruta de los beneficios de la plataforma a un increible precio.
+							<h1 class="price is-size-1 has-text-centered has-text-success"> $389.00 <small class="is-size-4 has-text-grey">MX / Anual</small></h1>
+							<a class="button is-success is-rounded is-large is-fullwidth margin-medium">Registrar</a>
 						</div>
 					</article>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="hero is-dark margin-medium">
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<h1 class="title is-size-1 has-text-centered heading">Clientes</h1>
+				<div class="columns">
+					<div class="column">
+						<figure class="image">
+						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						</figure>
+					</div>
+					<div class="column">
+						<figure class="image">
+						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						</figure>
+					</div>
+					<div class="column">
+						<figure class="image">
+						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						</figure>
+					</div>
+					<div class="column">
+						<figure class="image">
+						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						</figure>
+					</div>
+					<div class="column">
+						<figure class="image">
+						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						</figure>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -2,3 +2,18 @@
 	margin-top: 40px;
 	margin-bottom: 35px;
 }
+
+.margin-min{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.margin-medium{
+	margin-top: 25px;
+	margin-bottom: 15px;
+}
+
+.margin-big{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}

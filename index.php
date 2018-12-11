@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="public/images/tribu-logo.ico"/>
 	<title>Tribu - WebApp</title>
 	<link rel="stylesheet" href="public/bulma/bulma.css">
 	<link rel="stylesheet" href="public/main/main.css">
@@ -15,7 +16,7 @@
 <body>
 	<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
-			<a class="navbar-item" href="https://bulma.io">
+			<a class="navbar-item" href="#inicio">
 				<img src="public/images/bulma.png" width="112" height="28">
 			</a>
 			<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -26,16 +27,16 @@
 		</div>
 		<div id="navbarBasicExample" class="navbar-menu">
 			<div class="navbar-start">
-				<a class="navbar-item">
+				<a class="navbar-item" href="#inicio">
 					Inicio
 				</a>
-				<a class="navbar-item">
+				<a class="navbar-item" href="#funciones">
 					Funciones
 				</a>
-				<a class="navbar-item">
+				<a class="navbar-item" href="#planes">
 					Planes
 				</a>
-				<a class="navbar-item">
+				<a class="navbar-item" href="#clientes">
 					Clientes
 				</a>
 				<div class="navbar-item has-dropdown is-hoverable">
@@ -56,10 +57,10 @@
 			<div class="navbar-end">
 				<div class="navbar-item">
 					<div class="buttons">
-						<a class="button is-success">
+						<a class="button is-primary" onclick="registro()">
 							<strong>Regístrate</strong>
 						</a>
-						<a class="button is-light">
+						<a class="button is-light" href="web/iniciar-sesion.php">
 							Iniciar sesión
 						</a>
 					</div>
@@ -67,46 +68,56 @@
 			</div>
 		</div>
 	</nav>
-	<section class="hero is-light">
+	<section class="hero is-light" id="inicio">
 		<div class="hero-body">
 			<div class="container">
 				<div class="columns">
 					<div class="column is-two-thirds">
 						<div class="has-text-centered">
-							<h1 class="title">
-								Title
-							</h1>
-							<h2 class="subtitle">
-								Subtitle
+							<h1 class="title is-size-1 heading">Tribu</h1>
+							<h2 class="subtitle is-size-2">
+								Siéntete organizado sin esfuerzo
 							</h2>
+							<div class="columns">
+								<div class="column is-one-third"></div>
+								<div class="column">
+									<figure class="image">
+										<img class="is-rounded" src="public/images/tribu-logo.png">
+									</figure>
+								</div>
+								<div class="column"></div>
+							</div>
 						</div>
 					</div>
 					<div class="column">
 						<div class="card">
-							<div class="card-content">
+							<div class="card-content" id="app">
 								<form action="">
 									<div class="field">
 										<label class="label">Nombre de Usuario</label>
 										<div class="control">
-											<input class="input" type="text" placeholder="Ingrese su nombre de usuario">
+											<input id="usuario" type="text" placeholder="Ingrese su nombre de usuario" autofocus v-model="usuario" v-bind:class="inputUsuario" v-on:keyup="validarUsuario">
+											<p v-bind:class="messageUsuario">{{infoUsuario}}</p>
 										</div>
 									</div>
 									<div class="field">
 										<label class="label">Correo electrónico</label>
 										<div class="control">
-											<input class="input" type="text" placeholder="Ingrese su correo electrónico">
+											<input type="email" placeholder="Ingrese su correo electrónico"  v-model="email" v-bind:class="inputEmail" v-on:keyup="validarEmail">
+											<p v-bind:class="messageEmail">{{infoEmail}}</p>
 										</div>
 									</div>
 									<div class="field">
 										<label class="label">Contraseña</label>
 										<div class="control">
-											<input class="input" type="password" placeholder="Ingrese su contraseña">
+											<input type="password" placeholder="Ingrese su contraseña" v-model="password" v-bind:class="inputPassword" v-on:keyup="validarPassword">
+											<p v-bind:class="messagePassword">{{infoPassword}}</p>
 										</div>
 									</div>
 									<p class="is-size-7 margin-min">
-										Asegúrese de que tenga más de 15 caracteres, o al menos 8 caracteres, incluido un número y una letra minúscula. Son buenas prácticas de contraseña.
+										Asegúrese de que su contraseña tenga al menos 8 caracteres, incluido números y letras. Son buenas prácticas de contraseñas seguras.
 									</p>
-									<a class="button is-success is-medium is-fullwidth">Registrarme</a>
+									<button class="button is-primary is-medium is-fullwidth" v-bind:disabled="isButtonDisabled">Registrarme</button>
 									<p class="is-size-7 margin-min">
 										Al hacer clic en "Registrarse en Tribu", usted acepta nuestros términos de servicio y declaración de privacidad.
 									</p>
@@ -118,11 +129,11 @@
 			</div>
 		</div>
 	</section>
-	<section>
+	<section id="funciones">
 		<h1 class="title is-size-1 has-text-centered heading">Funciones</h1>
 		<div class="container">
 			<div class="columns">
-				<div class="column">
+				<div class="column is-two-thirds">
 					<article class="message">
 					  <div class="message-body">
 					    <strong>Módulo de administrador</strong>, administra de manera fácil y rapida el personal de tu organización. Planifica reuniones y eventos, crea asignaciones y/o comisiones, publica información general, avisos, circulares y notas. Gestiona el personal por departamentos o equipos. Genera la calendarización de la empresa con un solo clic.
@@ -137,13 +148,13 @@
 				</div>
 				<div class="column">
 					<figure class="image is-4by3">
-						<img class="is-rounded" src="public/images/funcion1.jpg">
+						<img class="" src="public/images/funcion2.png">
 					</figure>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section>
+	<section id="planes">
 		<h1 class="title is-size-1 has-text-centered heading">Planes</h1>
 		<div class="container">
 			<div class="columns">
@@ -154,8 +165,8 @@
 						</div>
 						<div class="message-body">
 							Registrate y obten 3 meses gratis, del uso completo de la plataforma.
-							<h1 class="price is-size-1 has-text-centered has-text-success"> Gratis <small class="is-size-4 has-text-grey"> / 3 meses</small></h1>
-							<a class="button is-success is-rounded is-large is-fullwidth margin-medium">Registrar</a>
+							<h1 class="price is-size-1 has-text-centered has-text-primary"> Gratis <small class="is-size-4 has-text-grey"> / 3 meses</small></h1>
+							<a class="button is-primary is-rounded is-large is-fullwidth margin-medium">Registrar</a>
 						</div>
 					</article>
 				</div>
@@ -166,48 +177,55 @@
 						</div>
 						<div class="message-body">
 							Disfruta de los beneficios de la plataforma a un increible precio.
-							<h1 class="price is-size-1 has-text-centered has-text-success"> $389.00 <small class="is-size-4 has-text-grey">MX / Anual</small></h1>
-							<a class="button is-success is-rounded is-large is-fullwidth margin-medium">Registrar</a>
+							<h1 class="price is-size-1 has-text-centered has-text-primary"> $389.00 <small class="is-size-4 has-text-grey">MX / Anual</small></h1>
+							<a class="button is-primary is-rounded is-large is-fullwidth margin-medium">Registrar</a>
 						</div>
 					</article>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section class="hero is-dark margin-medium">
+	<section class="hero is-dark margin-medium" id="clientes">
 		<div class="hero-body">
 			<div class="container has-text-centered">
 				<h1 class="title is-size-1 has-text-centered heading">Clientes</h1>
 				<div class="columns">
 					<div class="column">
 						<figure class="image">
-						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						  <img class="is-rounded" src="public/images/256x256.png">
 						</figure>
 					</div>
 					<div class="column">
 						<figure class="image">
-						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						  <img class="is-rounded" src="public/images/256x256.png">
 						</figure>
 					</div>
 					<div class="column">
 						<figure class="image">
-						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						  <img class="is-rounded" src="public/images/256x256.png">
 						</figure>
 					</div>
 					<div class="column">
 						<figure class="image">
-						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						  <img class="is-rounded" src="public/images/256x256.png">
 						</figure>
 					</div>
 					<div class="column">
 						<figure class="image">
-						  <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+						  <img class="is-rounded" src="public/images/256x256.png">
 						</figure>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<footer class="footer">
+		<div class="content has-text-centered">
+			<p>
+				<strong>2018 Tribu WebApp</strong> desarrollado por <a href="https://twitter.com/EdsonFOropeza" target="_blank">Edson Fernando VO</a>.
+			</p>
+		</div>
+	</footer>
 	<?php 
 		/*
 		$tmp = new VinculoAviso;
@@ -216,5 +234,7 @@
 		/**/
 	?>
 	<script src="public/bulma/bulma.js"></script>
+	<script src="public/vue/vue.js"></script>
+	<script src="public/main/main.js"></script>
 </body>
 </html>

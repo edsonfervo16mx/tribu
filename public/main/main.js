@@ -2,14 +2,21 @@ function registro(){
 	document.getElementById("usuario").focus();
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 var app = new Vue({
 	el: '#app',
 	data: {
 		infoUsuario: '',
-		usuario: '',
+		usuario: getParameterByName('usuario'),
 		inputUsuario: 'input',
 		messageUsuario: 'help',
-		email: '',
+		email: getParameterByName('email'),
 		inputEmail: 'input',
 		infoEmail: '',
 		messageEmail: 'help',
@@ -67,7 +74,19 @@ var app = new Vue({
 		upPassword2Alert: '',
 		upPassword2BoxAlert: 'help',
 		upPassword2Status: false,
-		upButtonDisabled: true
+		upButtonDisabled: true,
+		//
+		acEmailValue: getParameterByName('email'),
+		acEmailInput: 'input is-medium',
+		acEmailAlert: '',
+		acEmailBoxAlert: 'help',
+		acEmailStatus: false,
+		acIdValue: '',
+		acIdInput: 'input is-medium',
+		acIdAlert: '',
+		acIdBoxAlert: 'help',
+		acIdStatus: false,
+		actButtonDisabled: true
 	},	
 	methods:{
 		validarUsuario: function(){
@@ -110,6 +129,8 @@ var app = new Vue({
 					this.infoPassword = 'Su contraseña debe de tener minimo 8 caracteres';
 					this.statusPassword = false;
 			}
+			this.validarUsuario();
+			this.validarEmail();
 			this.validarFormulario();
 		},
 		validarFormulario: function(){
@@ -253,6 +274,42 @@ var app = new Vue({
 				this.upButtonDisabled = false;
 			}else{
 				this.upButtonDisabled = true;
+			}
+		},
+		acValidateEmail: function(){
+			if (this.reg.test(this.acEmailValue)){
+				this.acEmailInput = 'input is-success is-medium';
+				this.acEmailBoxAlert = 'help is-success';
+				this.acEmailAlert = 'Correcto';
+				this.acEmailStatus = true;
+			}else{
+				this.acEmailInput = 'input is-danger is-medium';
+				this.acEmailBoxAlert = 'help is-danger';
+				this.acEmailAlert = 'Ingrese una dirección de correo electrónico valida';
+				this.acEmailStatus = false;
+			}
+			this.validarActivateCuenta();
+		},
+		acValidateId: function(){
+			if(this.acIdValue.length >= 5){
+				this.acIdInput = 'input is-success is-medium';
+				this.acIdBoxAlert = 'help is-success';
+				this.acIdAlert = 'Correcto';
+				this.acIdStatus = true;
+			}else{
+				this.acIdInput = 'input is-danger is-medium';
+				this.acIdBoxAlert = 'help is-danger';
+				this.acIdAlert = 'Ingresar clave de activación, enviada por email';
+				this.acIdStatus = false;
+			}
+			this.acValidateEmail();
+			this.validarActivateCuenta();
+		},
+		validarActivateCuenta: function(){
+			if (this.acEmailStatus == true && this.acIdStatus == true) {
+				this.actButtonDisabled = false;
+			}else{
+				this.actButtonDisabled = true;
 			}
 		}
 	}

@@ -92,28 +92,51 @@
 					<div class="column">
 						<div class="card">
 							<div class="card-content" id="app">
-								<form action="">
+								<form action="web/acreditacion/cuenta-add.php" method="POST">
+									<div class="field">
+										<?php echo '<input type="text" name="acreditacion" value="'.rand(1899,1991).'" hidden>'; ?>
+									</div>
 									<div class="field">
 										<label class="label">Nombre de Usuario</label>
 										<div class="control">
-											<input id="usuario" type="text" placeholder="Ingrese su nombre de usuario" autofocus v-model="usuario" v-bind:class="inputUsuario" v-on:keyup="validarUsuario">
+											<input id="usuario" name="usuario" type="text" placeholder="Ingrese su nombre de usuario" autofocus v-model="usuario" v-bind:class="inputUsuario" v-on:keyup="validarUsuario" required>
 											<p v-bind:class="messageUsuario">{{infoUsuario}}</p>
 										</div>
 									</div>
 									<div class="field">
 										<label class="label">Correo electrónico</label>
 										<div class="control">
-											<input type="email" placeholder="Ingrese su correo electrónico"  v-model="email" v-bind:class="inputEmail" v-on:keyup="validarEmail">
+											<input type="email" name="email" placeholder="Ingrese su correo electrónico"  v-model="email" v-bind:class="inputEmail" v-on:keyup="validarEmail" required>
 											<p v-bind:class="messageEmail">{{infoEmail}}</p>
 										</div>
 									</div>
 									<div class="field">
 										<label class="label">Contraseña</label>
 										<div class="control">
-											<input type="password" placeholder="Ingrese su contraseña" v-model="password" v-bind:class="inputPassword" v-on:keyup="validarPassword">
+											<input type="password" name="password" placeholder="Ingrese su contraseña" v-model="password" v-bind:class="inputPassword" v-on:keyup="validarPassword" required>
 											<p v-bind:class="messagePassword">{{infoPassword}}</p>
 										</div>
 									</div>
+									<?php 
+										if (@$_GET['w'] == true && @$_GET['e']==2) {
+											echo '
+												<article class="message is-danger" v-if="!statusUsuario || !statusEmail || !statusPassword">
+													<div class="message-body">
+														Error, el correo electrónico ya tiene una cuenta asociada.
+													</div>
+												</article>
+											';
+										}
+										if (@$_GET['w'] == true && @$_GET['e']==1) {
+											echo '
+												<article class="message is-danger" v-if="!statusUsuario || !statusEmail || !statusPassword">
+													<div class="message-body">
+														Error, intente de nuevo.
+													</div>
+												</article>
+											';
+										}
+									?>
 									<p class="is-size-7 margin-min">
 										Asegúrese de que su contraseña tenga al menos 8 caracteres, incluido números y letras. Son buenas prácticas de contraseñas seguras.
 									</p>
@@ -129,6 +152,17 @@
 			</div>
 		</div>
 	</section>
+	<!-- pendiente el modal -->
+	<div class="modal" id="info">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="box">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt repellat, ab, perferendis earum delectus nulla esse, adipisci iure accusantium deleniti voluptatibus quasi quas architecto quos. Non, vero. Porro, numquam, soluta.
+			</div>
+		</div>
+		<button class="modal-close is-large" aria-label="close"></button>
+	</div>
+	<!-- -->
 	<section id="funciones">
 		<h1 class="title is-size-1 has-text-centered heading">Funciones</h1>
 		<div class="container">

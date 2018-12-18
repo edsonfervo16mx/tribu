@@ -78,6 +78,31 @@
 			return ($res);
 		}
 
+		public function viewDataForEmail($key,$email){
+			$request = $this->open($key);
+			$sql = 'SELECT perfil_administrador.clave,
+						perfil_administrador.nombre,
+						perfil_administrador.correo,
+						perfil_administrador.password,
+						perfil_administrador.id_cuenta,
+						perfil_administrador.inicio_cuenta,
+						perfil_administrador.vencimiento_cuenta,
+						perfil_administrador.estado_cuenta
+					from perfil_administrador where perfil_administrador.correo = "'.$email.'" LIMIT 1';
+			$res = $request->consultaDatos($key,$sql);
+			#echo $sql;
+			return ($res);
+		}
+
+		public function viewExist($key,$email){
+			$request = $this->open($key);
+			$sql = 'SELECT perfil_administrador.correo
+					from perfil_administrador where perfil_administrador.correo = "'.$email.'" LIMIT 1';
+			$res = $request->consultaDatos($key,$sql);
+			#echo $sql;
+			return ($res);
+		}
+
 		public function insert($key,$atr){
 			$request = $this->open($key);
 			$sql = 'INSERT INTO perfil_administrador(
@@ -126,11 +151,10 @@
 			return ($res);
 		}
 
-		public function enableService($key,$clave,$fecha_renovacion){
+		public function enableService($key,$clave){
 			$request = $this->open($key);
 			$sql = 'UPDATE perfil_administrador 
-					SET estado_cuenta = "active",
-						vencimiento_cuenta = "'.$fecha_renovacion.'" 
+					SET estado_cuenta = "active"
 					where clave = "'.$clave.'"';
 			$res = $request->disparadorSimple($key,$sql);
 			return ($res);

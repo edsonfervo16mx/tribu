@@ -30,7 +30,7 @@ var app = new Vue({
 		statusPassword: false,
 		isButtonDisabled: true,
 		//
-		logEmailValue: '',
+		logEmailValue: getParameterByName('email'),
 		logEmailInput: 'input is-medium',
 		logEmailAlert: '',
 		logEmailBoxAlert: 'help',
@@ -54,7 +54,7 @@ var app = new Vue({
 		resEmail2Status: false,
 		resButtonDisabled: true,
 		//
-		upEmailValue: '',
+		upEmailValue: getParameterByName('email'),
 		upEmailInput: 'input is-medium',
 		upEmailAlert: '',
 		upEmailBoxAlert: 'help',
@@ -159,7 +159,7 @@ var app = new Vue({
 			if (this.logPasswordValue.length >= 8){
 					this.logPasswordInput = 'input is-success is-medium';
 					this.logPasswordBoxAlert = 'help is-success';
-					this.logPasswordAlert = 'Ok';
+					this.logPasswordAlert = '';
 					this.logPasswordStatus = true;
 			}else{
 					this.logPasswordInput = 'input is-danger is-medium';
@@ -167,6 +167,7 @@ var app = new Vue({
 					this.logPasswordAlert = 'Su contraseña debe de tener minimo 8 caracteres';
 					this.logPasswordStatus = false;
 			}
+			this.logValidateEmail();
 			this.validarLogin();
 		},
 		validarLogin: function(){
@@ -228,7 +229,7 @@ var app = new Vue({
 			this.validarUpdateCuenta();
 		},
 		upValidateClave: function(){
-			if (this.upClaveValue.length >= 6) {
+			if (this.upClaveValue.length >= 5) {
 				this.upClaveInput = 'input is-success is-medium';
 				this.upClaveBoxAlert = 'help is-success';
 				this.upClaveAlert = 'Correcto';
@@ -239,6 +240,7 @@ var app = new Vue({
 				this.upClaveAlert = 'La clave no cumple el formato';
 				this.upClaveStatus = false;
 			}
+			this.upValidateEmail();
 			this.validarUpdateCuenta();
 		},
 		upValidatePassword: function(){
@@ -253,6 +255,7 @@ var app = new Vue({
 				this.upPasswordAlert = 'Su contraseña debe de tener minimo 8 caracteres';
 				this.upPasswordStatus = false;
 			}
+			this.upValidateEmail();
 			this.validarUpdateCuenta();
 		},
 		upValidatePassword2: function(){
@@ -267,6 +270,7 @@ var app = new Vue({
 				this.upPassword2Alert = 'No coinciden y/o debe de tener minimo 8 caracteres';
 				this.upPassword2Status = false;
 			}
+			this.upValidateEmail();
 			this.validarUpdateCuenta();
 		},
 		validarUpdateCuenta: function(){

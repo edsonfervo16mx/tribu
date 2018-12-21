@@ -25,22 +25,23 @@
 							<figure class="avatar">
 								<img src="../public/images/tribu-logo.png">
 							</figure>
-							<form>
+							<form action="" method="POST">
 								<div class="field">
 									<div class="control">
-										<input type="email" placeholder="Ingrese su correo electrónico"  v-model="resEmailValue" v-bind:class="resEmailInput" v-on:keyup="resValidateEmail()">
+										<input type="email" name="email" placeholder="Ingrese su correo electrónico"  v-model="resEmailValue" v-bind:class="resEmailInput" v-on:keyup="resValidateEmail()">
 											<p v-bind:class="resEmailBoxAlert">{{resEmailAlert}}</p>
 									</div>
 								</div>
 								<div class="field">
 									<div class="control">
-										<input type="email" placeholder="Volver a ingresar su correo electrónico"  v-model="resEmail2Value" v-bind:class="resEmail2Input" v-on:keyup="resValidateEmail2()">
+										<input type="email" name="emailconfirm" placeholder="Volver a ingresar su correo electrónico"  v-model="resEmail2Value" v-bind:class="resEmail2Input" v-on:keyup="resValidateEmail2()">
 											<p v-bind:class="resEmail2BoxAlert">{{resEmail2Alert}}</p>
 									</div>
 								</div>
 								<div class="field">
 									<p class="is-size-7 margin-min">
-										Se te enviará un correo electrónico con una clave, para restablecer su acceso.
+										Se te enviará un correo electrónico con una clave, para restablecer su acceso.<br>
+										<a href="restablecer-acceso.php">Ya tengo una clave de recuperación</a>
 									</p>
 								</div>
 								<button class="button is-block is-warning is-large is-fullwidth" v-bind:disabled="resButtonDisabled">Recuperar</button>

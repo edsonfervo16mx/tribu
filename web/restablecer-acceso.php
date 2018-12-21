@@ -25,32 +25,43 @@
 							<figure class="avatar">
 								<img src="../public/images/tribu-logo.png">
 							</figure>
-							<form>
+							<form action="acreditacion/reset-password.php" method="POST">
 								<div class="field">
 									<div class="control">
-										<input type="email" placeholder="Ingrese su correo electrónico"  v-model="upEmailValue" v-bind:class="upEmailInput" v-on:keyup="upValidateEmail()">
+										<input type="email" name="email" placeholder="Ingrese su correo electrónico"  v-model="upEmailValue" v-bind:class="upEmailInput" v-on:keyup="upValidateEmail()">
 										<p v-bind:class="upEmailBoxAlert">{{upEmailAlert}}</p>
 									</div>
 								</div>
 								<div class="field">
 									<div class="control">
-										<input type="text" placeholder="Ingresar clave de recuperación"  v-model="upClaveValue" v-bind:class="upClaveInput" v-on:keyup="upValidateClave()">
+										<input type="text" name="clave" placeholder="Ingresar clave de recuperación"  v-model="upClaveValue" v-bind:class="upClaveInput" v-on:keyup="upValidateClave()">
 										<p v-bind:class="upClaveBoxAlert">{{upClaveAlert}}</p>
 									</div>
 								</div>
 								<div class="field">
 									<div class="control">
-										<input type="password" placeholder="Ingresar nueva contraseña"  v-model="upPasswordValue" v-bind:class="upPasswordInput" v-on:keyup="upValidatePassword()">
+										<input type="password" name="password" placeholder="Ingresar nueva contraseña"  v-model="upPasswordValue" v-bind:class="upPasswordInput" v-on:keyup="upValidatePassword()">
 										<p v-bind:class="upPasswordBoxAlert">{{upPasswordAlert}}</p>
 									</div>
 								</div>
 								<div class="field">
 									<div class="control">
-										<input type="password" placeholder="Repetir contraseña"  v-model="upPassword2Value" v-bind:class="upPassword2Input" v-on:keyup="upValidatePassword2()">
+										<input type="password" name="password_c" placeholder="Repetir contraseña"  v-model="upPassword2Value" v-bind:class="upPassword2Input" v-on:keyup="upValidatePassword2()">
 										<p v-bind:class="upPassword2BoxAlert">{{upPassword2Alert}}</p>
 									</div>
 								</div>
 								<div class="field">
+									<?php 
+										if (@$_GET['w'] == true) {
+											echo '
+												<article class="message is-danger" v-if="!upClaveValue || !upPassword2Value">
+													<div class="message-body">
+														Error, intente de nuevo
+													</div>
+												</article>
+											';
+										}
+									?>
 									<p class="is-size-7 margin-min">
 										Escribe una nueva contraseña para acceder a la plataforma.
 									</p>

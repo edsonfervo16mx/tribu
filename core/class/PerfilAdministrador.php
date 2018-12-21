@@ -139,7 +139,15 @@
 
 		public function changePassword($key,$atr){
 			$request = $this->open($key);
-			$sql = 'UPDATE perfil_administrador SET password = "'.$atr['password'].'" where clave = "'.$atr['clave'].'"';
+			$sql = 'UPDATE perfil_administrador SET password = "'.$atr['password'].'" 
+					where clave = "'.$atr['clave'].'" and correo = "'.$atr['correo'].'" and id_cuenta = "'.$atr['id_cuenta'].'"';
+			$res = $request->disparadorSimple($key,$sql);
+			return ($res);
+		}
+
+		public function changeId($key,$clave,$id){
+			$request = $this->open($key);
+			$sql = 'UPDATE perfil_administrador SET id_cuenta = "'.$id.'" where clave = "'.$clave.'"';
 			$res = $request->disparadorSimple($key,$sql);
 			return ($res);
 		}

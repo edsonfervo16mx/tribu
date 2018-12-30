@@ -52,7 +52,7 @@
 							<div class="columns has-text-left">
 								<div class="column is-6">
 									<?php 
-										echo '<a href="formato-pago.php?id='.$_SESSION['id'].'&usuario='.$_SESSION['user'].'&email='.$_SESSION['email'].'&creacion='.$_SESSION['created'].'&vencimiento='.$_SESSION['expiration'].'&renovacion='.$fechaRenovacion.'" class="button is-success is-medium">Descargar formato de pago</a>';?>
+										echo '<a href="formato-pago.php?id='.$_SESSION['identificador'].'&usuario='.$_SESSION['user'].'&email='.$_SESSION['email'].'&creacion='.$_SESSION['created'].'&vencimiento='.$_SESSION['expiration'].'&renovacion='.$fechaRenovacion.'" class="button is-success is-medium">Descargar formato de pago</a>';?>
 									
 								</div>
 								<div class="column is-6 has-text-right">

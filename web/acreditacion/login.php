@@ -12,6 +12,7 @@
 			foreach ($data2 as $colPerfilAdmin) {}
 			if ($colPerfilAdmin->correo == $_POST['email'] && $colPerfilAdmin->password == md5($_POST['password'])) {
 				$_SESSION['id']=md5($colPerfilAdmin->clave).'/'.$colPerfilAdmin->clave;
+				$_SESSION['identificador']= $colPerfilAdmin->id_cuenta.'-'.$colPerfilAdmin->clave;
 				$_SESSION['user']=$colPerfilAdmin->nombre;
 				$_SESSION['email']=$colPerfilAdmin->correo;
 				$_SESSION['created']=$colPerfilAdmin->inicio_cuenta;

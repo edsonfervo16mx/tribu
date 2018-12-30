@@ -10,29 +10,38 @@
 		if ($colPerfil->correo) {
 			$data2 = $perfil->viewDataForEmail($key,$colPerfil->correo);
 			foreach ($data2 as $colPerfilAdmin) {}
-			if ($colPerfilAdmin->correo == $_POST['email'] && $colPerfilAdmin->password == $_POST['password']) {
-				$_SESSION['id']=$colPerfilAdmin->clave;
+			if ($colPerfilAdmin->correo == $_POST['email'] && $colPerfilAdmin->password == md5($_POST['password'])) {
+				$_SESSION['id']=md5($colPerfilAdmin->clave).'/'.$colPerfilAdmin->clave;
 				$_SESSION['user']=$colPerfilAdmin->nombre;
 				$_SESSION['email']=$colPerfilAdmin->correo;
+				$_SESSION['created']=$colPerfilAdmin->inicio_cuenta;
 				$_SESSION['expiration']=$colPerfilAdmin->vencimiento_cuenta;
 				$_SESSION['status']=$colPerfilAdmin->estado_cuenta;
 
 				if ($_SESSION['status'] == 'active') {
-					if ($_SESSION['expiration'] < date('Y-m-d')) {
+					if ($_SESSION['expiration'] >= date('Y-m-d')) {
 						echo 'exito';
 					}else{
-						echo 'vencida';
+						print '<meta http-equiv="REFRESH" content="0; url=../subscripcion-anual.php">';
 					}
 				}else{
-					echo 'inactiva';
+					//inactiva
+					session_destroy();
+					print '<meta http-equiv="REFRESH" content="0; url=../activar-cuenta.php">';
 				}
 			}else{
-				echo 'error, correo y/o password';
+				//error correo y/o password incorrecto
+				session_destroy();
+				print '<meta http-equiv="REFRESH" content="0; url=../iniciar-sesion.php?w=true&e=1&email='.$_POST['email'].'">';
 			}
 		}else{
-			echo 'error, el correo no tiene una cuenta vinculada';
+			//error, el correo no tiene una cuenta vinculada
+			session_destroy();
+			print '<meta http-equiv="REFRESH" content="0; url=../iniciar-sesion.php?w=true&e=2&email='.$_POST['email'].'">';
 		}
 	}else{
-		echo 'error, no ha ingresado los datos';
+		//error, no ha ingresado los datos
+		session_destroy();
+		print '<meta http-equiv="REFRESH" content="0; url=../iniciar-sesion.php?w=true&e=3&email='.$_POST['email'].'">';
 	}
 ?>
